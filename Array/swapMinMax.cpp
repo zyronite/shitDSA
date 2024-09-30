@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
-#include<climits>
 using namespace std;
+
 
 void printArr(int arr[], int sz) {
     for(int i=0;i<sz;i++) {
@@ -9,42 +9,39 @@ void printArr(int arr[], int sz) {
 }
 
 int findMin(int arr[], int sz) {
-    int smallest = INT_MAX, i;
+    int smallestIndex = 0, i;
     for(i=0;i<sz;i++) {
-        if(arr[i] < smallest) {
-            smallest = arr[i];
-            return i;
+        if(arr[i] < arr[smallestIndex]) {
+            smallestIndex = i;
         }
     }
-    return -1;
+    return smallestIndex;
 }
 
 int findMax(int arr[], int sz) {
-    int largest = INT_MIN, i;
+    int largestIndex = 0, i;
     for(i=0;i<sz;i++) {
-        if(arr[i] > largest) {
-            largest = arr[i];
-            return i;
+        if(arr[i] > arr[largestIndex]) {
+            largestIndex = i;
         }
     }
-    return -1;
+    return largestIndex;
+}
+
+void swapMinMax(int arr[], int sz) {
+    int max = findMax(arr, sz);
+    int min = findMin(arr, sz);
+
+    swap(arr[max], arr[min]);
 }
 
 int main() {
     int nums[] = {1,23,4,5,64,34};
     int size = 6;
-    int i = 0;
     int start = 0;
     int end = size - 1;
-    int max = findMax(nums, size);
-    int min = findMin(nums, size);
 
-    cout << max;
-    cout << min;
-    // while(start < end) {
-    //     swap(max == nums[i], min == nums[i]);
-    // }
-
-    // printArr(nums, size);
+    swapMinMax(nums, size);
+    printArr(nums, size);
 
 }
